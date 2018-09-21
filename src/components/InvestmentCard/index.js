@@ -59,9 +59,9 @@ const InvestmentCard = ({
           <NameHeader href={`/${name}`} done={done}>
             {name}
           </NameHeader>
-          <NameDescription
-            done={done}
-          >{`${company} • ${location}`}</NameDescription>
+          <NameDescription done={done}>
+            {`${company} • ${location}`}
+          </NameDescription>
         </Content>
       </TitleSection>
       <DataSection>
