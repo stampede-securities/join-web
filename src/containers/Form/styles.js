@@ -29,6 +29,7 @@ export const Description = styled(Flex)`
   @media only screen and (max-width: 600px) {
     width: 90%;
     text-align: left;
+    font-size: 12px;
   }
 `
 
