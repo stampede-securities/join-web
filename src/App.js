@@ -6,7 +6,8 @@ import theme from './theme'
 import { ThemeProvider } from 'styled-components'
 import config from './config'
 import Navbar from './components/Navbar'
-import Home from './containers/Home/'
+import Form from './containers/Form/'
+import Share from './containers/Share/'
 
 // Import slick.js css for react-slick component
 import 'slick-carousel/slick/slick.css'
@@ -24,9 +25,9 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <ApolloProvider client={client}>
             <div className="App">
-              <Navbar />
               <Switch>
-                <Route path="/" component={Home} />
+                <Route path="/share" component={Share} />
+                <Route path="/" component={Form} />
               </Switch>
             </div>
           </ApolloProvider>

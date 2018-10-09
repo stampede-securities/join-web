@@ -51,7 +51,6 @@ const StyledNavLink = styled(NavLink)`
   margin-right: 50px;
   align-self: center;
   text-decoration: none;
-
   &:hover {
     color: #89c65a;
   }
