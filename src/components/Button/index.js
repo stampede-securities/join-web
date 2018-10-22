@@ -9,11 +9,20 @@ const Button = ({
   sticky = false,
   ...rest
 }) => (
-  <StyledLink to={to}>
-    <Container sticky={sticky} blue={blue} {...rest}>
-      <Text size={size}>{text}</Text>
-    </Container>
-  </StyledLink>
+  <React.Fragment>
+    {!to && (
+      <Container sticky={sticky} blue={blue} {...rest}>
+        <Text size={size}>{text}</Text>
+      </Container>
+    )}
+    {Boolean(to) && (
+      <StyledLink to={to}>
+        <Container sticky={sticky} blue={blue} {...rest}>
+          <Text size={size}>{text}</Text>
+        </Container>
+      </StyledLink>
+    )}
+  </React.Fragment>
 )
 
 export default Button

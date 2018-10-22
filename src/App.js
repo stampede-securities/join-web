@@ -5,7 +5,6 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import theme from './theme'
 import { ThemeProvider } from 'styled-components'
 import config from './config'
-import Navbar from './components/Navbar'
 import Form from './containers/Form/'
 import Share from './containers/Share/'
 
@@ -27,6 +26,7 @@ class App extends Component {
             <div className="App">
               <Switch>
                 <Route path="/share" component={Share} />
+                <Route path="/:code" component={Form} />
                 <Route path="/" component={Form} />
               </Switch>
             </div>

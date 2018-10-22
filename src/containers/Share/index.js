@@ -12,7 +12,6 @@ import {
   Subheader,
   ShareButtons
 } from './styles'
-import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import {
   FacebookShareButton,
@@ -50,28 +49,16 @@ const copyToClipboard = str => {
   return true
 }
 
-const makeid = () => {
-  if (localStorage.id) return localStorage.id
-  let text = ''
-  const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
-  for (let i = 0; i < 5; i += 1)
-    text += possible.charAt(Math.floor(Math.random() * possible.length))
-  localStorage.id = text
-  return text
-}
-
 class Share extends Component {
   state = {
-    id: makeid(),
     emails: [],
-    copied: false
+    copied: false,
+    id: this.props.location.state.referralCode
   }
 
   render() {
     const { emails, id } = this.state
-    const url = `https://join.stampedelive.com?code=${id}`
+    const url = `https://join.stampedelive.com/${id}`
     return (
       <Container>
         <Logo src={logo} />
