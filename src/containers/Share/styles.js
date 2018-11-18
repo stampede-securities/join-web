@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex, Box } from 'grid-styled'
+import { Flex } from 'grid-styled'
 
 export const Container = styled(Flex)`
   flex-direction: column;
