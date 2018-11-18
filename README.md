@@ -1,4 +1,4 @@
-# Stampede-Web
+# Stampede Join Web
 
 ## Dependencies
 
