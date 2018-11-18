@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import config from './config'
 import Form from './containers/Form/'
 import Share from './containers/Share/'
+import Login from './containers/Login'
 
 // Import slick.js css for react-slick component
 import 'slick-carousel/slick/slick.css'
@@ -14,7 +15,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 // creates new GQL client to communicate with API
 const client = new ApolloClient({
-  uri: config.graphqlUrl
+  uri: config.graphqlUrl,
 })
 
 class App extends Component {
@@ -25,8 +26,8 @@ class App extends Component {
           <ApolloProvider client={client}>
             <div className="App">
               <Switch>
+                <Route path="/login" component={Login} />
                 <Route path="/share" component={Share} />
-                <Route path="/:code" component={Form} />
                 <Route path="/" component={Form} />
               </Switch>
             </div>

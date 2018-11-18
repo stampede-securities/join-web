@@ -5,48 +5,33 @@ import {
   Header,
   Description,
   LearnMore,
-  Forms
+  Forms,
 } from './styles'
-import { withApollo } from 'react-apollo'
-import logo from './logo-stampede-sticky.svg'
-import gql from 'graphql-tag'
+import { withRouter } from 'react-router-dom'
+import qs from 'query-string'
 
+import logo from './logo-stampede-sticky.svg'
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
-
-const CREATE_USER = gql`
-  mutation createUser($input: CreateUserInput!) {
-    createUser(createUserInput: $input) {
-      error {
-        message
-      }
-      user {
-        referralCode
-      }
-    }
-  }
-`
+import client from '../../client'
 
 class Form extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    const { code } = qs.parse(props.location.search)
     this.state = {
       nameError: false,
       emailError: false,
-      codeError: false,
       name: '',
       email: '',
-      referralCode: ''
+      refCode: code || '',
     }
-  }
-  componentDidMount() {
-    this.setState({ referralCode: this.props.match.params.code })
   }
   handleChangeInfo = event => {
     event.preventDefault()
     const { value, id } = event.target
     this.setState({
-      [id]: value
+      [id]: value,
     })
 
     const errorId = `${id}Error`
@@ -57,30 +42,21 @@ class Form extends Component {
   createUser = async () =>
     this.state.name &&
     this.state.email &&
-    this.props.client
-      .mutate({
-        mutation: CREATE_USER,
-        variables: {
-          input: {
-            email: this.state.email,
-            name: this.state.name,
-            referralCode: this.state.referralCode
-          }
-        }
+    client
+      .post('/users', {
+        name: this.state.name,
+        email: this.state.email,
+        signUpRefCode: this.state.refCode || 'ANON',
       })
-      .then(data => {
-        const { createUser } = data.data
-        if (createUser.error) {
-          console.error(data.error)
-        } else {
-          const { referralCode } = createUser.user
-          this.props.history.push({
-            pathname: '/share',
-            state: { referralCode }
-          })
-        }
+      .then(body => {
+        this.props.history.push({
+          pathname: '/share',
+        })
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.error(err)
+        alert('Problem signing up for email')
+      })
 
   render() {
     return (
@@ -88,20 +64,22 @@ class Form extends Component {
         <Logo src={logo} />
         <Header>Invest In What You Know</Header>
         <Description>
-          Stampede is a next generation equity crowdfunding platform for the
-          entertainment industry. We are democratizing the financial system by
-          giving people access to deals that previously were just available to
-          wealthy private investors.
+          Stampede is a next generation equity crowdfunding company for the
+          entertainment industry that allows fans to invest in their favorite
+          music artists and other creators. Stampede is not another reward or
+          donations crowdfunding site. Instead of donating money to a creator in
+          exchange for a small gift or token, Stampede allows you to become an
+          investor. As an investor, you earn a royalty share of the revenue
+          streams from the project.
         </Description>
         <LearnMore target="_blank" href="https://www.stampedelive.com/learn">
           Learn more
         </LearnMore>
-        <Header>Get Early Access</Header>
+        <Header>Join Keros Club</Header>
         <Description>
-          Sign up for our super user program to get early access to the first
-          deals launching on the platform and other perks. Once you've signed
-          up, we'll generate a unique code for you to share with your friends to
-          get them the same deal.
+          Sign up now to be a part of our elite program and get early access to
+          deals and other exclusive perks! We'll only email you when we launch
+          with exciting deals.
         </Description>
         <Forms>
           <TextInput
@@ -120,13 +98,6 @@ class Form extends Component {
             error={this.state.emailError}
             width="300px"
           />
-          <TextInput
-            placeholder="Referral Code (optional)"
-            value={this.state.referralCode}
-            id="referralCode"
-            onChange={this.handleChangeInfo}
-            width="300px"
-          />
         </Forms>
         <Button sticky onClick={this.createUser} text="Sign Up" />
       </Container>
@@ -134,4 +105,4 @@ class Form extends Component {
   }
 }
 
-export default withApollo(Form)
+export default withRouter(Form)

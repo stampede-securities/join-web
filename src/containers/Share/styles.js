@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex } from 'grid-styled'
+import { Flex, Box } from 'grid-styled'
 
 export const Container = styled(Flex)`
   flex-direction: column;
@@ -24,35 +24,13 @@ export const Header = styled(Flex)`
 
 export const Description = styled(Flex)`
   font-family: 'Source Sans Pro';
-  width: 60%;
+  width: 40%;
+  text-align: center;
   @media only screen and (max-width: 600px) {
     width: 90%;
     font-size: 12px;
+    text-align: left;
   }
-`
-
-export const Code = styled(Flex)`
-  font-family: 'Source Sans Pro';
-  font-weight: 700;
-  font-size: 24px;
-`
-
-export const CopyButton = styled.img`
-  width: 25px;
-  height: 25px;
-  margin-left: 10px;
-  margin-top: 5px;
-`
-
-export const CodeContainer = styled(Flex)`
-  flex-direction: row;
-  padding-top: 20px;
-`
-
-export const CopiedToKeyboard = styled(Flex)`
-  font-family: 'Source Sans Pro';
-  font-size: 12px;
-  align-self: center;
 `
 
 export const Forms = styled(Flex)`
@@ -81,4 +59,10 @@ export const Subheader = styled(Flex)`
     font-size: 16px;
     padding-top: 10px;
   }
+`
+
+export const LiveSite = styled.a`
+  font-family: 'Source Sans Pro';
+  color: black;
+  display: inline-block;
 `
