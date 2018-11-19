@@ -45,7 +45,7 @@ export const ShareButtons = styled(Flex)`
   flex-direction: row;
   justify-content: space-between;
   width: 200px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 `
 
 export const Subheader = styled(Flex)`

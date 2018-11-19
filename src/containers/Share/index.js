@@ -49,7 +49,7 @@ class Share extends Component {
           Link to our full site
         </LiveSite>.
         <Subheader>Share With Friends</Subheader>
-        <ReactMultiEmail
+        {/* <ReactMultiEmail
           placeholder="Emails"
           emails={emails}
           style={{ fontFamily: 'Source Sans Pro', width: 300 }}
@@ -64,9 +64,9 @@ class Share extends Component {
               </span>
             </div>
           )}
-        />
+        /> */}
         <br />
-        <Button sticky to="/share" text="Send Code" />
+        {/* <Button sticky to="/share" text="Send Code" /> */}
         <ShareButtons>
           <FacebookShareButton url={url}>
             <FacebookIcon size={32} round />
