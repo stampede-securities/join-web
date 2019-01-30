@@ -44,7 +44,7 @@ export const Forms = styled(Flex)`
 export const ShareButtons = styled(Flex)`
   flex-direction: row;
   justify-content: space-between;
-  width: 200px;
+  width: 225px;
   /* padding-top: 20px; */
 `
 
@@ -65,4 +65,28 @@ export const LiveSite = styled.a`
   font-family: 'Source Sans Pro';
   color: black;
   display: inline-block;
+`
+
+export const Code = styled(Flex)`
+  font-family: 'Source Sans Pro';
+  font-weight: 700;
+  font-size: 20px;
+`
+
+export const CopyButton = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  margin-top: 5px;
+`
+
+export const CodeContainer = styled(Flex)`
+  flex-direction: row;
+  padding-top: 20px;
+`
+
+export const CopiedToKeyboard = styled(Flex)`
+  font-family: 'Source Sans Pro';
+  font-size: 12px;
+  align-self: center;
 `

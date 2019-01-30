@@ -8,7 +8,6 @@ import client from '../../client'
 class Login extends Component {
   state = {
     email: '',
-    hash: '',
   }
   handleChangeInfo = event => {
     event.preventDefault()
@@ -19,12 +18,8 @@ class Login extends Component {
   }
   logIn = () =>
     this.state.email &&
-    this.state.hash &&
     client
-      .post('/auth/login', {
-        email: this.state.email,
-        password: this.state.hash,
-      })
+      .get(`/users/email/${this.state.email}`)
       .then(res => {
         localStorage.token = res.token
         localStorage.accessLevel = res.accessLevel
@@ -36,25 +31,17 @@ class Login extends Component {
       })
       .catch(err => {
         console.log(err)
-        alert('Could not log in, check your email and password')
+        alert('Could not log in, check your email')
       })
   render() {
     return (
       <Container>
-        <h1>Admin Login</h1>
+        <h1>Ambassador Login</h1>
         <Forms>
           <TextInput
             placeholder="Email"
             value={this.state.email}
             id="email"
-            onChange={this.handleChangeInfo}
-            width="300px"
-          />
-          <TextInput
-            placeholder="Password"
-            type="password"
-            value={this.state.hash}
-            id="hash"
             onChange={this.handleChangeInfo}
             width="300px"
           />

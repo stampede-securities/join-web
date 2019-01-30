@@ -8,7 +8,7 @@ import {
   Forms,
 } from './styles'
 import { withRouter } from 'react-router-dom'
-import qs from 'query-string'
+import qs from 'qs'
 
 import logo from './logo-stampede-sticky.svg'
 import TextInput from '../../components/TextInput'
@@ -18,7 +18,7 @@ import client from '../../client'
 class Form extends Component {
   constructor(props) {
     super(props)
-    const { code } = qs.parse(props.location.search)
+    const { code } = qs.parse(props.location.search.slice(1))
     this.state = {
       nameError: false,
       emailError: false,
@@ -48,10 +48,9 @@ class Form extends Component {
         email: this.state.email,
         signUpRefCode: this.state.refCode || 'ANON',
       })
-      .then(body => {
-        this.props.history.push({
-          pathname: '/share',
-        })
+      .then(user => {
+        console.log(user)
+        this.props.history.push('/share', { code: user.refCode })
       })
       .catch(err => {
         console.error(err)
