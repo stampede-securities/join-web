@@ -49,3 +49,15 @@ Dashboard for admins to see the DB
 ### `/ambassador`
 
 Page for ambassadors to see their information
+
+## Spotify
+
+Spotify code is in src/containers/Form/index.js. Will need to replace localhost references with actual URL. Current end result is to have Spotify song id stored in this.state.addedSongs - to change what gets stored at the end to use on backend, replace instances of the below with something else:
+
+```bash
+this.setState(prevState => ({
+   addedSongs: [...prevState.addedSongs, wanted_id]
+}))
+```
+
+Song IDs are passed in through URL parameter - ie in the form http://localhost:3000/?2fg7fOCgtxcdRFjeiULyo6.
